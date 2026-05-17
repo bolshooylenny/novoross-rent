@@ -1004,5 +1004,256 @@
           <div class="contact-item">
             <div class="contact-icon">🕐</div>
             <div>
-              <div class="contact-label">Время ответа</div>
-              <div class="cont
+                            <div class="contact-label">Время ответа</div>
+              <div class="contact-value">Ежедневно, 8:00 — 23:00</div>
+            </div>
+          </div>
+
+          <div class="contacts-buttons">
+            <a href="https://max.ru/+79186727059" class="btn-primary" target="_blank" rel="noopener">MAX</a>
+            <a href="https://t.me/username" class="btn-secondary" target="_blank" rel="noopener">Telegram</a>
+          </div>
+        </div>
+
+        <div class="contacts-map">
+          <iframe
+            src="https://yandex.ru/map-widget/v1/?ll=37.770%2C44.720&z=12"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            title="Карта расположения">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-logo">Аренда в Новороссийске</div>
+        <div class="footer-links">
+          <a href="#objects">Объекты</a>
+          <a href="#about">О нас</a>
+          <a href="#contacts">Контакты</a>
+        </div>
+        <div class="footer-copy">© 2025 · Все права защищены</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО ОБЪЕКТА -->
+  <div class="apt-modal" id="aptModal" aria-hidden="true" role="dialog">
+    <div class="apt-modal__overlay" data-close></div>
+    <div class="apt-modal__dialog" role="document">
+      <button class="apt-modal__close" data-close aria-label="Закрыть">×</button>
+      <div class="apt-modal__gallery">
+        <button class="apt-modal__nav apt-modal__nav--prev" id="aptModalPrev" aria-label="Назад">‹</button>
+        <img class="apt-modal__img" id="aptModalImg" src="" alt="">
+        <button class="apt-modal__nav apt-modal__nav--next" id="aptModalNext" aria-label="Вперёд">›</button>
+        <div class="apt-modal__counter" id="aptModalCounter">1 / 1</div>
+      </div>
+      <div class="apt-modal__dots" id="aptModalDots"></div>
+      <div class="apt-modal__body">
+        <h3 class="apt-modal__title" id="aptModalTitle"></h3>
+        <div class="apt-modal__address" id="aptModalAddress"></div>
+        <div class="apt-modal__price" id="aptModalPrice"></div>
+        <p class="apt-modal__desc" id="aptModalDesc"></p>
+        <a class="apt-modal__book-btn" id="aptModalBookBtn" href="#" target="_blank" rel="noopener">Забронировать</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // === ДАННЫЕ ОБ ОБЪЕКТАХ ===
+    const apartments = [
+      {
+        title: "Квартира на ул. Южная",
+        address: "г. Новороссийск, ул. Южная 9",
+        price: "от 2 500 ₽/сутки",
+        description: "Уютная квартира в Южном районе. Есть парковка, кондиционер, всё необходимое для комфортного отдыха. 15 мин. пешком до моря.",
+        bookingText: "Хочу забронировать Квартиру на ул. Южная",
+        photos: [
+          "images/apt1.jpg","images/apt1-2.jpg","images/apt1-3.jpg","images/apt1-4.jpg",
+          "images/apt1-5.jpg","images/apt1-6.jpg","images/apt1-7.jpg","images/apt1-8.jpg"
+        ]
+      },
+      {
+        title: "Квартира на ул. Суворовская",
+        address: "г. Новороссийск, ул. Суворовская 77",
+        price: "от 2 800 ₽/сутки",
+        description: "Просторная квартира с видом на горы и море. Тихий двор, закрытая парковка, рядом магазины. 2-3 минуты до пляжа пешком.",
+        bookingText: "Хочу забронировать Квартиру на ул. Суворовская",
+        photos: [
+          "images/apt2.jpg","images/apt2-2.jpg","images/apt2-3.jpg","images/apt2-4.jpg",
+          "images/apt2-5.jpg","images/apt2-6.jpg","images/apt2-7.jpg","images/apt2-8.jpg"
+        ]
+      },
+      {
+        title: "Квартира на пр. Дзержинского",
+        address: "г. Новороссийск, пр-кт. Дзержинского 209",
+        price: "от 3 000 ₽/сутки",
+        description: "Современный ремонт, большая кухня, удобное расположение. Подходит для семей с детьми.",
+        bookingText: "Хочу забронировать Квартиру на пр. Дзержинского",
+        photos: [
+          "images/apt3.jpg","images/apt3-2.jpg","images/apt3-3.jpg","images/apt3-4.jpg",
+          "images/apt3-5.jpg","images/apt3-6.jpg","images/apt3-7.jpg","images/apt3-8.jpg"
+        ]
+      },
+      {
+        title: "Квартира на ул. Куникова, 47",
+        address: "г. Новороссийск, ул. Куникова 47",
+        price: "от 2 600 ₽/сутки",
+        description: "Компактная и уютная квартира для двоих. Всё рядом — море 10 мин. пешком, кафе, набережная.",
+        bookingText: "Хочу забронировать Квартиру на ул. Куникова, 47",
+        photos: [
+          "images/apt4.jpg","images/apt4-2.jpg","images/apt4-3.jpg","images/apt4-4.jpg",
+          "images/apt4-5.jpg","images/apt4-6.jpg","images/apt4-7.jpg","images/apt4-8.jpg"
+        ]
+      },
+      {
+        title: "Квартира на ул. Куникова, 5",
+        address: "г. Новороссийск, ул. Куникова 5",
+        price: "от 3 200 ₽/сутки",
+        description: "Большая квартира для компании или семьи. Две спальни, просторная гостиная, балкон.",
+        bookingText: "Хочу забронировать Квартиру на ул. Куникова, 5",
+        photos: [
+          "images/apt5.jpg","images/apt5-2.jpg","images/apt5-3.jpg","images/apt5-4.jpg",
+          "images/apt5-5.jpg","images/apt5-6.jpg","images/apt5-7.jpg","images/apt5-8.jpg"
+        ]
+      },
+      {
+        title: "Дом в Южной Озереевке",
+        address: "с. Южная Озереевка",
+        price: "от 5 000 ₽/сутки",
+        description: "Уютный загородный дом в тихом месте. Свой двор, мангал, парковка. Идеально для отдыха с семьёй или компанией.",
+        bookingText: "Хочу забронировать Дом в Южной Озереевке",
+        photos: [
+          "images/apt6.jpg","images/apt6-2.jpg","images/apt6-3.jpg","images/apt6-4.jpg",
+          "images/apt6-5.jpg","images/apt6-6.jpg","images/apt6-7.jpg","images/apt6-8.jpg"
+        ]
+      }
+    ];
+
+    // === Копирование телефона ===
+    function copyPhone(event) {
+      const phone = '+79186727059';
+      const btn = event.currentTarget;
+      navigator.clipboard.writeText(phone).then(() => {
+        btn.textContent = '✅ Скопировано!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = '📋 Копировать';
+          btn.classList.remove('copied');
+        }, 2000);
+      }).catch(() => {
+        alert('Номер: ' + phone);
+      });
+    }
+
+    // === МОДАЛКА ОБЪЕКТА ===
+    (function() {
+      const modal     = document.getElementById('aptModal');
+      const imgEl     = document.getElementById('aptModalImg');
+      const counterEl = document.getElementById('aptModalCounter');
+      const dotsEl    = document.getElementById('aptModalDots');
+      const titleEl   = document.getElementById('aptModalTitle');
+      const addressEl = document.getElementById('aptModalAddress');
+      const priceEl   = document.getElementById('aptModalPrice');
+      const descEl    = document.getElementById('aptModalDesc');
+      const bookBtn   = document.getElementById('aptModalBookBtn');
+      const prevBtn   = document.getElementById('aptModalPrev');
+      const nextBtn   = document.getElementById('aptModalNext');
+
+      let currentApt = null;
+      let index = 0;
+
+      function render() {
+        if (!currentApt) return;
+        imgEl.src = currentApt.photos[index];
+        counterEl.textContent = (index + 1) + ' / ' + currentApt.photos.length;
+        [...dotsEl.children].forEach((d, i) =>
+          d.classList.toggle('active', i === index)
+        );
+      }
+
+      function prev() {
+        if (!currentApt) return;
+        index = (index - 1 + currentApt.photos.length) % currentApt.photos.length;
+        render();
+      }
+      function next() {
+        if (!currentApt) return;
+        index = (index + 1) % currentApt.photos.length;
+        render();
+      }
+
+      function openModal(apt) {
+        currentApt = apt;
+        index = 0;
+        titleEl.textContent   = apt.title;
+        addressEl.textContent = apt.address;
+        priceEl.textContent   = apt.price;
+        descEl.textContent    = apt.description;
+        bookBtn.href = 'https://max.ru/+79186727059?text=' + encodeURIComponent(apt.bookingText);
+
+        dotsEl.innerHTML = '';
+        apt.photos.forEach((_, i) => {
+          const dot = document.createElement('span');
+          dot.className = 'apt-modal__dot';
+          dot.addEventListener('click', () => { index = i; render(); });
+          dotsEl.appendChild(dot);
+        });
+
+        render();
+        modal.classList.add('is-open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('modal-open');
+      }
+
+      function closeModal() {
+        modal.classList.remove('is-open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('modal-open');
+      }
+
+      // Привязка к карточкам объектов
+      document.querySelectorAll('.obj-card').forEach((card, i) => {
+        if (!apartments[i]) return;
+        card.addEventListener('click', (e) => {
+          if (e.target.closest('a, button')) return;
+          openModal(apartments[i]);
+        });
+      });
+
+      modal.querySelectorAll('[data-close]').forEach(el =>
+        el.addEventListener('click', closeModal)
+      );
+
+      prevBtn.addEventListener('click', prev);
+      nextBtn.addEventListener('click', next);
+
+      document.addEventListener('keydown', e => {
+        if (!modal.classList.contains('is-open')) return;
+        if (e.key === 'Escape')     closeModal();
+        if (e.key === 'ArrowLeft')  prev();
+        if (e.key === 'ArrowRight') next();
+      });
+
+      // Свайп
+      let touchX = null;
+      modal.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+      modal.addEventListener('touchend', e => {
+        if (touchX === null) return;
+        const dx = e.changedTouches[0].clientX - touchX;
+        if (Math.abs(dx) > 50) { dx > 0 ? prev() : next(); }
+        touchX = null;
+      });
+    })();
+  </script>
+
+</body>
+</html>
