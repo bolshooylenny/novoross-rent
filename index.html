@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+	<meta name="theme-color" content="#2ea882">
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Посуточная аренда в Новороссийске</title>
@@ -1118,6 +1119,54 @@ body.modal-open {
   }
   .apt-modal__title { font-size: 20px; }
   .apt-modal__body { padding: 20px; }
+}
+	  /* ============ ФИКСЫ ДЛЯ МОБИЛЬНЫХ ============ */
+@media (max-width: 768px) {
+
+  /* Косяк №1: Первый экран — затемнить фон и подвинуть контент */
+  .hero {
+    min-height: 100vh;
+    padding: 80px 20px 40px;
+  }
+  
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 1;
+  }
+  
+  .hero > * {
+    position: relative;
+    z-index: 2;
+  }
+  
+  .hero h1,
+  .hero p,
+  .hero .stats,
+  .hero .stat-number {
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Косяк №2: Точки галереи — поднять выше кнопки */
+  .apt-modal__dots {
+    position: relative;
+    margin: 15px auto;
+    padding: 8px 12px;
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    width: fit-content;
+  }
+  
+  .apt-modal__body {
+    padding-bottom: 20px;
+  }
+  
+  .apt-modal__book-btn {
+    margin-top: 10px;
+  }
 }
 </style>
 </head>
